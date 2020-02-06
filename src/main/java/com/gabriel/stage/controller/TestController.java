@@ -40,6 +40,7 @@ public class TestController {
     @GetMapping("/test")
     @NoRequiredLoginToken
     public Result test(){
+        log.info("测试MDC追踪日志");
         Long testLong=100000L;
         String name="中文乱码";
         return Result.success(name);

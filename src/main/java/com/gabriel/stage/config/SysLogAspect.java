@@ -20,8 +20,8 @@ import org.springframework.util.StopWatch;
  * @description 统一日志拦截
  */
 @Slf4j
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class SysLogAspect {
 
     /** 注解切点 */
@@ -41,7 +41,8 @@ public class SysLogAspect {
     public Object logAround(ProceedingJoinPoint pjd)throws Throwable{
         Signature signature = pjd.getSignature();
         //请求类名
-        String className = signature.getClass().getName();
+//        String className = signature.getClass().getName();
+        String className = pjd.getTarget().getClass().getName();
         //请求方法名
         String methodName = signature.getName();
         //记录日志入库
