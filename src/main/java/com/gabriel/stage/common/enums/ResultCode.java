@@ -38,6 +38,13 @@ public enum  ResultCode {
      * @desc 需要登录
      */
     NEED_LOGIN(50000, "登录超时,请重新登录!"),
+
+    /**
+     * Need login response code.
+     *
+     * @desc 需要登录
+     */
+    NO_LOGIN(401, "未登录,请重新登录!"),
     /**
      * Exception response code.
      *

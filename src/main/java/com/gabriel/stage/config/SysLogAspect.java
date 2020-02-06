@@ -17,11 +17,11 @@ import org.springframework.util.StopWatch;
 /**
  * @author: Gabriel
  * @date: 2020/1/28 22:08
- * @description 服务日志切面
+ * @description 统一日志拦截
  */
 @Slf4j
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class SysLogAspect {
 
     /** 注解切点 */

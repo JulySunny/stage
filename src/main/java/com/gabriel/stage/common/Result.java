@@ -12,8 +12,11 @@ import java.io.Serializable;
  */
 public class Result<T> implements Serializable {
 
+    /** 状态码 */
     private int status;
+    /** 消息体 */
     private String msg;
+    /** 数据体 */
     private T data;
 
     private Result(int status) {

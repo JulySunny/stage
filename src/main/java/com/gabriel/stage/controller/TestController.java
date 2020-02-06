@@ -1,5 +1,7 @@
 package com.gabriel.stage.controller;
 
+import com.gabriel.stage.annotation.NoRequiredLoginToken;
+import com.gabriel.stage.annotation.RequiredLoginToken;
 import com.gabriel.stage.common.Result;
 import com.gabriel.stage.service.ICarService;
 import com.gabriel.stage.service.ITestService;
@@ -35,9 +37,12 @@ public class TestController {
      * Mybatis Plus Demo
      * @return
      */
-    @DeleteMapping("/test")
+    @GetMapping("/test")
+    @NoRequiredLoginToken
     public Result test(){
-        return Result.success();
+        Long testLong=100000L;
+        String name="中文乱码";
+        return Result.success(name);
     }
 
 
