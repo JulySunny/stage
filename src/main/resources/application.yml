@@ -6,6 +6,12 @@ spring:
   jackson:
     # 解决服务端向前端返回时间时，减少8个小时的问题
     time-zone: GMT+8
+  #redis 相关配置
+  redis:
+    host: 122.51.148.144
+    password: mypassword
+    port: 6379
+  #druid 数据源相关配置
   datasource:
     druid:
       # 初始化大小，最小，最大
@@ -38,3 +44,18 @@ server:
 jasypt:
   encryptor:
     password: Gabriel
+
+
+# 企业微信配置
+corpwechat:
+  corpid: xxxxxx
+  corpsecret: xxxxx
+  agentId: 1000002
+  sendMessageUrl: https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s
+
+# 微供有数3.0 企业微信消息推送
+wgdatawechat:
+  corpid: ww97aae76adf8bbf32
+  corpsecret: bTZNfE0lAsuNvx9j2sxU8_vT9YOSHbmXOnCZMK1v79M
+  agentId: 1000002
+  sendMessageUrl: https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s

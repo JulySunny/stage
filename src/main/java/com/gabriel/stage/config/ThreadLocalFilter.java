@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * @author: Gabriel
  * @date: 2020/1/28 21:14
- * @description 过滤器测试
+ * @description 过滤器
  */
 @Slf4j
 @Component
@@ -27,12 +27,14 @@ public class ThreadLocalFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        //添加MDC日志
         String logtrackId = UUID.randomUUID(true).toString();
         MDC.put("logTrackId",logtrackId);
         log.info("过滤器执行中");
         try {
             filterChain.doFilter(servletRequest, servletResponse);
         }finally{
+            //移除MDC日志
             MDC.remove(logtrackId);
         }
         log.info("过滤器执行完成");

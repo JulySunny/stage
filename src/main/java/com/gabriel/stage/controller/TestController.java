@@ -5,11 +5,14 @@ import com.gabriel.stage.annotation.RequiredLoginToken;
 import com.gabriel.stage.common.Result;
 import com.gabriel.stage.service.ICarService;
 import com.gabriel.stage.service.ITestService;
+import com.gabriel.stage.task.WxMessageTask;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Random;
 
 /**
@@ -32,7 +35,8 @@ public class TestController {
     private ITestService iTestService;
 
 
-
+    @Autowired
+    private WxMessageTask wxMessageTask;
     /**
      * Mybatis Plus Demo
      * @return
@@ -40,10 +44,9 @@ public class TestController {
     @GetMapping("/test")
     @NoRequiredLoginToken
     public Result test(){
-        log.info("测试MDC追踪日志");
-        Long testLong=100000L;
-        String name="中文乱码";
-        return Result.success(name);
+
+        wxMessageTask.pushMessage();
+        return Result.success();
     }
 
 
