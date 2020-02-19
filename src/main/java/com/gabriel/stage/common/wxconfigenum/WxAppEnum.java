@@ -1,4 +1,4 @@
-package com.gabriel.stage.common.enums;
+package com.gabriel.stage.common.wxconfigenum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

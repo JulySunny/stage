@@ -1,10 +1,10 @@
-package com.gabriel.stage.config;
+package com.gabriel.stage.config.wxconfig;
 
 import lombok.Data;
 import lombok.ToString;
 
 /**
- * @author: yq
+ * @author: Gabriel
  * @date: 2020/2/14 17:52
  * @description
  */

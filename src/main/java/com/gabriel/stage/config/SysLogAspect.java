@@ -86,8 +86,6 @@ public class SysLogAspect {
         // 获取执行完的时间
         log.info(String.format("接口【%s】总耗时(毫秒)：%s", methodName, watch.getTotalTimeMillis()));
 
-
-        System.out.println("Spring AOP方式记录标准请求-应答模型服务日志");
         //请求参数
         Object request=null;
 

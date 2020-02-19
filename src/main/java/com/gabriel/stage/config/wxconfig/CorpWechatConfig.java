@@ -1,19 +1,17 @@
-package com.gabriel.stage.config;
+package com.gabriel.stage.config.wxconfig;
 
 import lombok.Data;
-import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @author: yq
+ * @author: Gabriel
  * @date: 2019/12/17 9:10
  * @discription
  */
 @Data
 @Component
-@ToString(callSuper = false)
 @ConfigurationProperties(prefix = "corpwechat")
-public class CorpWechatConfig extends IWxAppBaseConfig{
+public class CorpWechatConfig extends IWxAppBaseConfig {
 
 }

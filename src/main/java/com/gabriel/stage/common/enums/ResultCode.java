@@ -51,6 +51,13 @@ public enum  ResultCode {
      * @desc 服务器内部错误
      */
     EXCEPTION(500, "该请求发生异常,请稍后重试!"),
+
+    /**
+     * Exception response code.
+     *
+     * @desc 服务器内部错误
+     */
+    SYS_BUSY(5000, "系统繁忙！,请稍后再试"),
     /**
      * Sys not found error response code.
      */

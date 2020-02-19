@@ -1,18 +1,17 @@
 package com.gabriel.stage.controller;
 
 import com.gabriel.stage.annotation.NoRequiredLoginToken;
-import com.gabriel.stage.annotation.RequiredLoginToken;
+import com.gabriel.stage.annotation.RateLimitAnno;
 import com.gabriel.stage.common.Result;
 import com.gabriel.stage.service.ICarService;
 import com.gabriel.stage.service.ITestService;
 import com.gabriel.stage.task.WxMessageTask;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Random;
 
 /**
@@ -42,10 +41,11 @@ public class TestController {
      * @return
      */
     @GetMapping("/test")
+    @RateLimitAnno(limitNum = 1)
     @NoRequiredLoginToken
-    public Result test(){
-
-        wxMessageTask.pushMessage();
+    public Result test() throws InterruptedException {
+//         Thread.sleep(5000);
+//        wxMessageTask.pushMessage();
         return Result.success();
     }
 

@@ -1,13 +1,13 @@
 package com.gabriel.stage.task;
 
-import com.gabriel.stage.common.enums.WxAppEnum;
-import com.gabriel.stage.config.IWxAppBaseConfig;
-import com.gabriel.stage.config.WxAppConfigFactory;
+import com.gabriel.stage.common.wxconfigenum.WxAppEnum;
+import com.gabriel.stage.config.wxconfig.IWxAppBaseConfig;
+import com.gabriel.stage.config.wxconfig.WxAppConfigFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * @author: yq
+ * @author: Gabriel
  * @date: 2019/12/13 17:35
  * @discription
  */

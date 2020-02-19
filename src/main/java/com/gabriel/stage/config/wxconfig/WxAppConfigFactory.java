@@ -1,9 +1,8 @@
-package com.gabriel.stage.config;
+package com.gabriel.stage.config.wxconfig;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.gabriel.stage.common.enums.WxAppConfigEnum;
-import com.gabriel.stage.common.enums.WxAppEnum;
-import lombok.Data;
+import com.gabriel.stage.common.wxconfigenum.WxAppConfigEnum;
+import com.gabriel.stage.common.wxconfigenum.WxAppEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author: yq
+ * @author: Gabriel
  * @date: 2020/2/14 17:51
  * @description 企业微信应用配置工厂类
  */
@@ -21,7 +20,7 @@ import java.util.Map;
 public class WxAppConfigFactory {
 
 
-    public static final Map<WxAppEnum,IWxAppBaseConfig> configMap =new HashMap<>();
+    public static final Map<WxAppEnum, IWxAppBaseConfig> configMap =new HashMap<>();
 
     @Autowired
     private ApplicationContext applicationContext;
