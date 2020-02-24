@@ -32,13 +32,27 @@ public class InterceptorConfig implements WebMvcConfigurer, InitializingBean {
     @Autowired
     private AuthenticationInterceptor authenticationInterceptor;
 
+    @Autowired
+    private AccessLimitInterceptor accessLimitInterceptor;
+
+    @Autowired
+    private ApiIdempotentInterceptor apiIdempotentInterceptor;
+
     /**
      * 拦截器注册
      * @param registry
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authenticationInterceptor).addPathPatterns("/**");
+        // 接口幂等性拦截器
+        registry.addInterceptor(accessLimitInterceptor);
+        // 接口防刷限流拦截器
+        registry.addInterceptor(apiIdempotentInterceptor);
+        // 登录拦截器-验证签名
+        registry.addInterceptor(authenticationInterceptor)
+                .addPathPatterns("/**");
+
+
     }
 
     /**

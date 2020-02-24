@@ -3,7 +3,8 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
     <property name="LOG_HOME" value="src/main/resources/log.properties"/>
-    <!--<property name="LOG_HOME" value="/Users/weibinbin/logs/carton"/>-->
+    <!--linux-->
+    <!-- <property name="LOG_HOME" value="/Users/yangqiang/logs/carton"/>-->
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">

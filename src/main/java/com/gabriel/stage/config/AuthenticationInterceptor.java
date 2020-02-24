@@ -81,14 +81,14 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 }
                 User user = userService.getById(userId);
                 if (ObjectUtil.isNull(user)) {
-                    //TODO 用户不存在,请重新登录，这里需要优化异常类的构造方法
-                    throw new BusinessException(ResultCode.NO_LOGIN);
+                    //用户不存在
+                    throw new BusinessException(ResultCode.USER_NOT_EXISTS);
                 }
                 JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
                 try {
                     jwtVerifier.verify(token);
                 } catch (JWTVerificationException e) {
-                    //TODO 校验失败,token有误
+                    //token失效 签名校验失败
                     throw new BusinessException(ResultCode.NO_LOGIN);
                 }
                 return true;
