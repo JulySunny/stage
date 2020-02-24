@@ -3,6 +3,8 @@ package com.gabriel.stage.mq.receiver;
 import com.gabriel.stage.common.Constant;
 import com.gabriel.stage.config.RabbitConfig;
 import com.gabriel.stage.entity.Mail;
+import com.gabriel.stage.entity.MsgLog;
+import com.gabriel.stage.mq.MessageHelper;
 import com.gabriel.stage.service.MsgLogService;
 import com.gabriel.stage.utils.MailUtil;
 import com.rabbitmq.client.Channel;

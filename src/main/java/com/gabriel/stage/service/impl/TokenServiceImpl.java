@@ -4,11 +4,10 @@ import com.gabriel.stage.common.Constant;
 import com.gabriel.stage.common.Result;
 import com.gabriel.stage.common.enums.ResultCode;
 import com.gabriel.stage.exception.BusinessException;
-import com.gabriel.stage.utils.JedisUtil;
+import com.gabriel.stage.service.TokenService;
 import com.gabriel.stage.utils.RandomUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.StrBuilder;
-import com.gabriel.stage.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,7 @@ public class TokenServiceImpl implements TokenService {
     private static final String TOKEN_NAME = "token";
 
     @Autowired
-    private JedisUtil jedisUtil;
+    private RedisService redisService;
 
     @Override
     public Result createToken() {
@@ -32,7 +31,7 @@ public class TokenServiceImpl implements TokenService {
         StrBuilder token = new StrBuilder();
         token.append(Constant.Redis.TOKEN_PREFIX).append(str);
 
-        jedisUtil.set(token.toString(), token.toString(), Constant.Redis.EXPIRE_TIME_MINUTE);
+        redisService.set(token.toString(), token.toString(), Constant.Redis.EXPIRE_TIME_MINUTE.longValue());
 
         return Result.success(token.toString());
     }
@@ -47,13 +46,13 @@ public class TokenServiceImpl implements TokenService {
             }
         }
 
-        if (!jedisUtil.exists(token)) {
-            throw new BusinessException(ResultCode.SYS_BUSY);
+        if (!redisService.exists(token)) {
+            throw new BusinessException(ResultCode.SERVER_ERROR);
         }
 
-        Long del = jedisUtil.del(token);
-        if (del <= 0) {
-            throw new BusinessException(ResultCode.SYS_BUSY);
+        Boolean flag = redisService.remove(token);
+        if (!flag) {
+            throw new BusinessException(ResultCode.SERVER_ERROR);
         }
     }
 

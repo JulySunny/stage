@@ -8,16 +8,23 @@ spring:
     time-zone: GMT+8
   #redis 相关配置
   redis:
-    host: localhost
+    host: 122.51.148.144
     password: mypassword
     port: 6379
+    timeout: 0
+    jedis:
+      pool:
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+
   #rabbitmq的配置
   rabbitmq:
     #基础配置
-    host: localhost
+    host: 122.51.148.144
     port: 5672
-    username: guest
-    password: guest
+    username: gabriel
+    password: gabriel
     #开启confirms回调 P->Exchange
     publisher-confirms: true
     #开启returnedMessage回调 Exchange->Queen
@@ -51,7 +58,7 @@ spring:
       # 在mysql下建议关闭。默认是true
       pool-prepared-statements: true
       max-pool-prepared-statement-per-connection-size: 20
-      url: jdbc:mysql://localhost:33306/db_test_sql?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://122.51.148.144:33306/db_test_sql?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
       username: root
       password: ENC(ItrbuNtKQKO59VCt0Sr51Q==)
   #邮箱配置

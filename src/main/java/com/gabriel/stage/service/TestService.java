@@ -5,9 +5,6 @@ import com.gabriel.stage.entity.Mail;
 
 public interface TestService {
 
-    Result testIdempotence();
-
-    Result accessLimit();
 
     Result send(Mail mail);
 }

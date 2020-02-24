@@ -52,10 +52,11 @@ public class RedisService {
      *
      * @param key
      */
-    public void remove(final String key) {
+    public Boolean remove(final String key) {
         if (exists(key)) {
-            redisTemplate.delete(key);
+            return redisTemplate.delete(key);
         }
+        return false;
     }
 
     /**

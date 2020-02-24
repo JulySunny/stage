@@ -45,7 +45,7 @@ public class TestController {
     @NoRequiredLoginToken
     public Result test() throws InterruptedException {
 //         Thread.sleep(5000);
-//        wxMessageTask.pushMessage();
+        wxMessageTask.pushMessage();
         return Result.success();
     }
 

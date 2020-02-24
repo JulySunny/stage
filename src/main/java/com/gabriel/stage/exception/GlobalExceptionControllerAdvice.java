@@ -54,10 +54,10 @@ public class GlobalExceptionControllerAdvice {
         }
 
         if (StringUtils.isBlank(exception.getMessage())) {
-            return Result.errorCodeMessage(ResultCode.EXCEPTION.getCode(),"空指针异常");
+            return Result.errorCodeMessage(ResultCode.SERVER_ERROR.getCode(),"空指针异常");
         }
 
-        return Result.errorCodeMessage(ResultCode.EXCEPTION.getCode(), exception.getMessage());
+        return Result.errorCodeMessage(ResultCode.SERVER_ERROR.getCode(), exception.getMessage());
 
     }
 

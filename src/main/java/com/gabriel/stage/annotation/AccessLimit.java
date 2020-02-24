@@ -14,8 +14,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AccessLimit {
 
-    int maxCount();// 最大访问次数
 
-    int seconds();// 固定时间, 单位: s
+    /**
+     * 最大访问次数
+     */
+    int maxCount();
+
+    /**
+     * 固定时间, 单位: s
+     */
+    int seconds();
 
 }

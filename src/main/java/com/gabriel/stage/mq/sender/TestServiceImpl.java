@@ -1,9 +1,13 @@
 package com.gabriel.stage.mq.sender;
 
-import cn.hutool.core.util.RandomUtil;
 import com.gabriel.stage.common.Result;
 import com.gabriel.stage.config.RabbitConfig;
 import com.gabriel.stage.entity.Mail;
+import com.gabriel.stage.entity.MsgLog;
+import com.gabriel.stage.mapper.MsgLogMapper;
+import com.gabriel.stage.mq.MessageHelper;
+import com.gabriel.stage.service.TestService;
+import com.gabriel.stage.utils.RandomUtil;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +18,8 @@ import org.springframework.stereotype.Service;
  * @date: 2020/2/19 23:44
  * @description
  */
-@Service
-public class TestServiceImpl {
+@Service(value = "testMq")
+public class TestServiceImpl implements TestService {
     @Autowired
     private MsgLogMapper msgLogMapper;
 
