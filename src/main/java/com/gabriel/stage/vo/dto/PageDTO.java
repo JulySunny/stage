@@ -2,6 +2,7 @@ package com.gabriel.stage.vo.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
@@ -24,5 +25,9 @@ public class PageDTO {
 
     public Integer getPageSize() {
         return Optional.ofNullable(pageSize).orElse(10);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(BigDecimal.ZERO);
     }
 }

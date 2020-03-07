@@ -6,6 +6,7 @@ import com.gabriel.stage.common.enums.ResultCode;
 import com.gabriel.stage.exception.BusinessException;
 import com.gabriel.stage.service.TokenService;
 import com.gabriel.stage.utils.RandomUtil;
+import com.gabriel.stage.utils.RedisService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.StrBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
