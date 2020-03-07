@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.math.BigDecimal;
@@ -38,8 +39,22 @@ public class InterceptorConfig implements WebMvcConfigurer, InitializingBean {
     @Autowired
     private ApiIdempotentInterceptor apiIdempotentInterceptor;
 
+
+    /**
+     * 添加资源处理器-这里主要是添加swagger的相关资源
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
     /**
      * 拦截器注册
+     *
      * @param registry
      */
     @Override
@@ -50,7 +65,11 @@ public class InterceptorConfig implements WebMvcConfigurer, InitializingBean {
         registry.addInterceptor(apiIdempotentInterceptor);
         // 登录拦截器-验证签名
         registry.addInterceptor(authenticationInterceptor)
-                .addPathPatterns("/**");
+                .addPathPatterns("/**")
+                //不拦截用户登录接口
+                .excludePathPatterns("/user/login")
+                //不拦截swagger相关的接口
+                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
 
 
     }
@@ -59,14 +78,15 @@ public class InterceptorConfig implements WebMvcConfigurer, InitializingBean {
      * 添加Cors跨域配置
      * addMapping/allowedMethods/allowedOrigins 主要用于简单请求
      * allowCredentials/allowedHeaders 主要用于非简单请求 非简单请求比简单请求的请求头字段要多
+     *
      * @param registry
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-                //必填：配置支持跨域的路径 请求头字段无, 非Cors属性,属于SpringBoot配置
+        //必填：配置支持跨域的路径 请求头字段无, 非Cors属性,属于SpringBoot配置
         registry.addMapping("/**")
                 //必填：配置支持跨域请求的方法,如：GET、POST，一次性返回
-                .allowedMethods("GET", "POST", "DELETE", "PUT","OPTION")
+                .allowedMethods("GET", "POST", "DELETE", "PUT", "OPTION")
                 //必填：配置允许的源 Access-Control-Allow-Origin
                 .allowedOrigins("*")
                 //选填: 配置是否允许发送Cookie, 用于 凭证请求
@@ -96,6 +116,7 @@ public class InterceptorConfig implements WebMvcConfigurer, InitializingBean {
     /**
      * 实现InitializingBean接口,重写afterPropertiesSet方法用于处理返回的数据
      * 解决数据转换问题（例如BigDecimal转换为String,解决精度问题）
+     *
      * @throws Exception
      */
     @Override
@@ -105,7 +126,7 @@ public class InterceptorConfig implements WebMvcConfigurer, InitializingBean {
             objectMapper.registerModule(simpleModule);
             // 为mapper注册一个带有SerializerModifier的Factory，处理null值
             objectMapper.setSerializerFactory(objectMapper.getSerializerFactory()
-            //CustomizeBeanSerializerModifier 自定义序列化修改器
+                    //CustomizeBeanSerializerModifier 自定义序列化修改器
                     .withSerializerModifier(new CustomizeBeanSerializerModifier()));
         }
     }

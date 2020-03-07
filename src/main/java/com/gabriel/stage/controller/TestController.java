@@ -6,12 +6,14 @@ import com.gabriel.stage.common.Result;
 import com.gabriel.stage.service.ICarService;
 import com.gabriel.stage.service.ITestService;
 import com.gabriel.stage.task.WxMessageTask;
+import com.gabriel.stage.vo.TestVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 /**
@@ -43,10 +45,12 @@ public class TestController {
     @GetMapping("/test")
     @RateLimitAnno(limitNum = 1)
     @NoRequiredLoginToken
-    public Result test() throws InterruptedException {
+    public Result<TestVO> test() throws InterruptedException {
 //         Thread.sleep(5000);
-        wxMessageTask.pushMessage();
-        return Result.success();
+        TestVO testVO=new TestVO();
+        testVO.setBigDecimal(new BigDecimal(1.2262));
+//        wxMessageTask.pushMessage();
+        return Result.success(testVO);
     }
 
 
