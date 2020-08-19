@@ -14,60 +14,28 @@ import java.util.Objects;
 @Getter
 @AllArgsConstructor
 public enum  ResultCode {
-    /**
-     * Success response code.
-     *
-     * @desc 请求操作成功
-     */
+
+
+    /** 系统模块 */
     SUCCESS(0, "操作成功!"),
-    /**
-     * Error response code.
-     *
-     * @desc 请求操作失败
-     */
     ERROR(1, "操作失败!"),
-    /**
-     * Illegal argument response code.
-     *
-     * @desc 参数错误
-     */
-    ILLEGAL_ARGUMENT(2, "请求参数错误!"),
-    /**
-     * Need login response code.
-     *
-     * @desc 需要登录
-     */
-    NEED_LOGIN(50000, "登录超时,请重新登录!"),
+    SERVER_ERROR(500, "系统繁忙！,请稍后再试"),
 
-    /**
-     * Need login response code.
-     *
-     * @desc 需要登录
-     */
-    NO_LOGIN(401, "未登录,请重新登录!"),
-    /**
-     * Exception response code.
-     *
-     * @desc 服务器内部错误
-     */
-    EXCEPTION(500, "该请求发生异常,请稍后重试!"),
-
-    /**
-     * Exception response code.
-     *
-     * @desc 服务器内部错误
-     */
-    SYS_BUSY(5000, "系统繁忙！,请稍后再试"),
-    /**
-     * Sys not found error response code.
-     */
-    SYS_NOT_FOUND_ERROR(404, "未找到相应资源!"),
-
+    /** 通用模块 */
+    ILLEGAL_ARGUMENT(10000, "参数不合法"),
+    REPETITIVE_OPERATION(10001, "请勿重复操作"),
+    ACCESS_LIMIT(10002, "请求太频繁, 请稍后再试"),
+    MAIL_SEND_SUCCESS(10003, "邮件发送成功"),
     DATABASE_ERROR(6000,"数据库异常,请稍后重试!"),
-    /**
-     * Sys not use error response code.
-     */
-    SYS_NOT_USE_ERROR(403, "资源不可用!");
+
+    /** 用户模块 */
+    NEED_LOGIN(20001, "登录失效"),
+    USERNAME_OR_PASSWORD_EMPTY(20002, "用户名或密码不能为空"),
+    USERNAME_OR_PASSWORD_WRONG(20003, "用户名或密码错误"),
+    USER_NOT_EXISTS(20004, "用户不存在"),
+    WRONG_PASSWORD(20005, "密码错误"),
+    NO_LOGIN(20006, "未登录,请重新登录!");
+
 
     private final int code;
 

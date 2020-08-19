@@ -89,7 +89,7 @@ public class RateLimitAspect {
                 obj = joinPoint.proceed();
         } else {
             System.err.println("接口限流，请求降级。。。。。。。。。。。。。。。。。");
-            throw new BusinessException(ResultCode.SYS_BUSY);
+            throw new BusinessException(ResultCode.SERVER_ERROR);
         }
         return obj;
     }

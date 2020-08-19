@@ -9,8 +9,7 @@ import lombok.ToString;
  * @description
  */
 @Data
-@ToString
-public  class IWxAppBaseConfig {
+public  abstract class IWxAppBaseConfig {
 
     /** 企业Id */
     private String corpid;

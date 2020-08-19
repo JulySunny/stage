@@ -30,7 +30,7 @@ public class CustomizeBeanSerializerModifier extends BeanSerializerModifier {
 
     public CustomizeBeanSerializerModifier() {
     }
-
+    @Override
     public List<BeanPropertyWriter> changeProperties(SerializationConfig config, BeanDescription beanDesc, List<BeanPropertyWriter> beanProperties) {
         Iterator var4 = beanProperties.iterator();
 
@@ -62,7 +62,7 @@ public class CustomizeBeanSerializerModifier extends BeanSerializerModifier {
     public static class NullObjectJsonSerializer extends JsonSerializer<Object> {
         public NullObjectJsonSerializer() {
         }
-
+        @Override
         public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
             if (value == null) {
                 jgen.writeStartObject();
@@ -77,7 +77,7 @@ public class CustomizeBeanSerializerModifier extends BeanSerializerModifier {
     public static class NullArrayJsonSerializer extends JsonSerializer<Object> {
         public NullArrayJsonSerializer() {
         }
-
+        @Override
         public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
             if (value == null) {
                 jgen.writeStartArray();
@@ -92,7 +92,7 @@ public class CustomizeBeanSerializerModifier extends BeanSerializerModifier {
     public static class NullBoolTypeJsonSerializer extends JsonSerializer<Object> {
         public NullBoolTypeJsonSerializer() {
         }
-
+        @Override
         public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
             if (value == null) {
                 jgen.writeBoolean(false);
@@ -106,7 +106,7 @@ public class CustomizeBeanSerializerModifier extends BeanSerializerModifier {
     public static class NullBasicTypeJsonSerializer extends JsonSerializer<Object> {
         public NullBasicTypeJsonSerializer() {
         }
-
+        @Override
         public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
             if (value == null) {
                 jgen.writeString("");
