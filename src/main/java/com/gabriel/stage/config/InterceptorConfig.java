@@ -30,8 +30,8 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 @Order(1)
 public class InterceptorConfig implements WebMvcConfigurer, InitializingBean {
-//    @Autowired
-//    private AuthenticationInterceptor authenticationInterceptor;
+    @Autowired
+    private AuthenticationInterceptor authenticationInterceptor;
 
     @Autowired
     private AccessLimitInterceptor accessLimitInterceptor;
@@ -62,9 +62,9 @@ public class InterceptorConfig implements WebMvcConfigurer, InitializingBean {
         // 接口幂等性拦截器
         registry.addInterceptor(accessLimitInterceptor);
         // 接口防刷限流拦截器
-        registry.addInterceptor(apiIdempotentInterceptor)
+        registry.addInterceptor(apiIdempotentInterceptor);
         // 登录拦截器-验证签名
-
+        registry.addInterceptor(authenticationInterceptor)
                 .addPathPatterns("/**")
                 //不拦截用户登录接口
                 .excludePathPatterns("/user/login")
