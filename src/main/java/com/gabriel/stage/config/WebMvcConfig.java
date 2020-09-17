@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -30,8 +30,8 @@ import java.util.List;
  * @description  自定义SpringMvc转换器 解决数据转换问题（例如BigDecimal转换为String,解决精度问题）
  * 注意：springboot2.x以后继承 WebMvcConfigurationSupport 会覆盖"所有的WebMvc默认的配置,比如WebMvcConfigure",因此不推荐该中方法
  */
-//@Configuration
-public class WebMvcConfig extends WebMvcConfigurationSupport {
+@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
 
 
     /**
@@ -49,7 +49,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        super.configureMessageConverters(converters);
+        //super.configureMessageConverters(converters);
         final MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         ObjectMapper objectMapper = converter.getObjectMapper();
 
@@ -86,4 +86,18 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         converters.add(converter);
         converters.add(new StringHttpMessageConverter(StandardCharsets.UTF_8));
     }
+
+    /** fastJson序列化 */
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        FastJsonHttpMessageConverter fastConvert = new FastJsonHttpMessageConverter();
+//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+//        fastJsonConfig.setSerializerFeatures(new SerializerFeature[]{SerializerFeature.PrettyFormat, SerializerFeature.WriteNullStringAsEmpty, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.WriteMapNullValue, SerializerFeature.DisableCheckSpecialChar});
+//        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
+//        List<MediaType> fastMediaTypes = new ArrayList();
+//        fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+//        fastConvert.setSupportedMediaTypes(fastMediaTypes);
+//        fastConvert.setFastJsonConfig(fastJsonConfig);
+//
+//    }
 }
