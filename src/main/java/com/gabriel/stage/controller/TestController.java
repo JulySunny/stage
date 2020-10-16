@@ -7,6 +7,8 @@ import com.gabriel.stage.service.ICarService;
 import com.gabriel.stage.service.ITestService;
 import com.gabriel.stage.task.WxMessageTask;
 import com.gabriel.stage.vo.TestVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,7 @@ import java.util.Random;
 @Slf4j
 @RestController
 @RequestMapping("/v1/api")
+@Api(tags = "测试API")
 public class TestController {
     public static  ThreadLocal<Integer> tl=new ThreadLocal<>();
 
@@ -45,6 +48,7 @@ public class TestController {
     @GetMapping("/test")
     @RateLimitAnno(limitNum = 1)
     @NoRequiredLoginToken
+    @ApiOperation("测试swagger方法")
     public Result<TestVO> test() throws InterruptedException {
 //         Thread.sleep(5000);
         TestVO testVO=new TestVO();

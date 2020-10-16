@@ -1,0 +1,88 @@
+client:
+    game:
+        host: http://api.open.fulu.com
+        path: /api/Order/GetOrder
+    rentalNum:
+        host: http://api.test.cqcqcq.cn
+        path: /fulu-channel-cloud/order/getOrderDetail
+fdfs:
+    connect-timeout: 600
+    pool:
+        max-total: 200.0
+    so-timeout: 1500
+    thumbImage:
+        height: 150
+        width: 150
+    trackerList: 192.168.3.66:22122,192.168.3.73:22122
+    webServerUrl: http://192.168.3.112/
+logging:
+    level:
+        com:
+            leigod:
+                NNN: debug
+mybatis:
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+order:
+    orderNo:
+        expiration: 60
+        ext: 'orderNo:'
+server:
+    port: 8080
+sharding:
+    jdbc:
+        config:
+            masterslave:
+                load-balance-algorithm-type: round_robin
+                master-data-source-name: ds_master
+                name: dataSource
+                slave-data-source-names: ds_slave
+        datasource:
+            ds_master:
+                driver-class-name: com.mysql.jdbc.Driver
+                password: 123456
+                type: com.alibaba.druid.pool.DruidDataSource
+                url: jdbc:mysql://192.168.3.66:3306/3N?characterEncoding=utf-8
+                username: root
+            ds_slave:
+                driver-class-name: com.mysql.jdbc.Driver
+                password: 123456
+                type: com.alibaba.druid.pool.DruidDataSource
+                url: jdbc:mysql://192.168.3.66:3306/3N?characterEncoding=utf-8
+                username: root
+            names: ds_master,ds_slave
+spring:
+    datasource:
+        druid:
+            initial-size: 5
+            max-active: 20
+            min-idle: 10
+            stat-view-servlet:
+                login-password: druid
+                login-username: druid
+            web-stat-filter:
+                exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+    jmx:
+        enabled: false
+    rabbitmq:
+        host: 192.168.3.64
+        listener:
+            simple:
+                acknowledge-mode: manual
+        password: admin
+        port: 5672
+        publisher-confirms: true
+        publisher-returns: true
+        username: admin
+        virtual-host: /3N
+    redis:
+        database: 0
+        host: 192.168.3.66
+        password: 1qaz2wsx!!
+        pool:
+            max-active: 8
+            max-idle: 8
+            max-wait: -1
+            min-idle: 0
+        port: 6379
+        timeout: 0

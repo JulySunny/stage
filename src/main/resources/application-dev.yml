@@ -60,7 +60,7 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
       url: jdbc:mysql://122.51.148.144:33306/db_test_sql?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
       username: root
-      password: 1234556
+      password: 123456
   #邮箱配置
   mail:
     host:

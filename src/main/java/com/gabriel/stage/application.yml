@@ -1,0 +1,36 @@
+aliyun:
+    oss:
+        accessKeyId: test
+        accessKeySecret: test
+        bucketName: macro-oss
+        callback: http://localhost:8080/aliyun/oss/callback
+        dir:
+            prefix: mall/images/
+        endpoint: oss-cn-shenzhen.aliyuncs.com
+        maxSize: 10
+        policy:
+            expire: 300
+jwt:
+    expiration: 604800
+    secret: mySecret
+    tokenHead: 'Bearer '
+    tokenHeader: Authorization
+logging:
+    level:
+        com:
+            leigod:
+                NNN: debug
+        root: info
+    path: logging.path=/var/logs
+mybatis:
+    mapper-locations: classpath:dao/*.xml,classpath*:com/**/mapper/*.xml
+spring:
+    http:
+        multipart:
+            max-file-size: 30MB
+            max-request-size: 50MB
+    thymeleaf:
+        cache: false
+        content-type: text/html
+        encoding: UTF-8
+        mode: HTML5
